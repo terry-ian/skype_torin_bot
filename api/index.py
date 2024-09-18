@@ -56,7 +56,7 @@ chat_session = model.start_chat(
 app = Flask(__name__)
 
 app_id = '39e212f4-5286-487f-bca7-82d5949d9a5d'
-app_secret = 'cb049636-bc0a-4ba4-83c2-6a80e87528d0'
+app_secret = '0Wr8Q~qcpFuqp7X4bTNyyY8s5DOg3MZqggKCZamm'
 bot = skype_chatbot.SkypeBot(app_id, app_secret)
 
 # domain root
