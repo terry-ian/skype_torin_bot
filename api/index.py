@@ -55,8 +55,8 @@ chat_session = model.start_chat(
 
 app = Flask(__name__)
 
-app_id = '39e212f4-5286-487f-bca7-82d5949d9a5d'
-app_secret = '0Wr8Q~qcpFuqp7X4bTNyyY8s5DOg3MZqggKCZamm'
+app_id = os.getenv('APP_ID')
+app_secret = os.getenv('APP_SECRET')
 bot = skype_chatbot.SkypeBot(app_id, app_secret)
 
 # domain root
@@ -74,7 +74,7 @@ def handle_message():
         recipient = data['from']
         service = data['serviceUrl']
         sender = data['conversation']['id']
-        text = data['text']
+        text = chat_session.send_message(data['text'])
 
         bot.send_message(bot_id, bot_name, recipient, service, sender, text)
         
