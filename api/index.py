@@ -73,8 +73,8 @@ def handle_message():
         recipient = data['from']
         service = data['serviceUrl']
         sender = data['conversation']['id']
-        text = chat_session.send_message(data['text'])
-
+        text_gpt = chat_session.send_message(data['text'])
+        text = text_gpt.text.replace('**','').replace('*','-')
         bot.send_message(bot_id, bot_name, recipient, service, sender, text)
         
     except Exception as e:
