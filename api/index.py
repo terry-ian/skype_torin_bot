@@ -53,6 +53,10 @@ chat_session = model.start_chat(
 
 
 app = Flask(__name__)
+# domain root
+@app.route('/')
+def home():
+    return 'Hello, World!'
 
 # 用來接收訊息的 Webhook
 @app.route('/webhook', methods=['POST'])
