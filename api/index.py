@@ -7,7 +7,8 @@ import google.generativeai as genai
 
 working_status = os.getenv("DEFALUT_TALKING", default = "true").lower() == "true"
 
-
+app_id = os.getenv('APP_ID')
+app_secret = os.getenv('APP_SECRET')
 genai.configure(api_key="AIzaSyD8OG39WRzCydCU2l6qOmqLJkldMbFmI9o")
 
 
@@ -54,9 +55,6 @@ chat_session = model.start_chat(
 
 
 app = Flask(__name__)
-
-app_id = os.getenv('APP_ID')
-app_secret = os.getenv('APP_SECRET')
 
 bot = skype_chatbot.SkypeBot(app_id, app_secret)
 
