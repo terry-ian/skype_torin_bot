@@ -65,7 +65,7 @@ def handle_message():
     data = request.json
     
     # 從接收到的數據中提取使用者訊息
-    user_message = data['text'] if 'text' in data else ''
+    user_message = data.get('text', '')
     
     response = chat_session.send_message(user_message)
     # 回應訊息
