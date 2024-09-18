@@ -53,6 +53,11 @@ chat_session = model.start_chat(
 
 
 app = Flask(__name__)
+
+app_id = '39e212f4-5286-487f-bca7-82d5949d9a5d'
+app_secret = 'cb049636-bc0a-4ba4-83c2-6a80e87528d0'
+bot = skype_chatbot.SkypeBot(app_id, app_secret)
+
 # domain root
 @app.route('/')
 def home():
@@ -61,23 +66,22 @@ def home():
 # 用來接收訊息的 Webhook
 @app.route('/webhook', methods=['POST'])
 def handle_message():
-    # 接收 Azure Bot 發送過來的 JSON 資料
-    data = request.json
-    
-    # 從接收到的數據中提取使用者訊息
-    user_message = data.get('text', '')
-    
-    # 根據訊息生成回應
-    bot_response = f"你說了: {user_message}"
-    
-    # 建立回應 JSON
-    response_data = {
-        "type": "message",
-        "text": bot_response
-    }
+    try:
+        data = json.loads(request.data) 
+        bot_id = data['recipient']['id']
+        bot_name = data['recipient']['name']
+        recipient = data['from']
+        service = data['serviceUrl']
+        sender = data['conversation']['id']
+        text = data['text']
+
+        bot.send_message(bot_id, bot_name, recipient, service, sender, text)
+        
+    except Exception as e:
+      print(e)
 
     # 回傳回應給 Azure Bot Service
-    return jsonify(response_data)
+    return 'Code: 200'
 
 
 
