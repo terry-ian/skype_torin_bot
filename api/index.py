@@ -2,6 +2,7 @@ from flask import Flask, request, abort, jsonify
 import skype_chatbot
 import json
 import os
+import re
 import time
 import google.generativeai as genai
 
