@@ -67,9 +67,8 @@ def handle_message():
     # 從接收到的數據中提取使用者訊息
     user_message = data.get('text', '')
     
-    response = chat_session.send_message(user_message)
-    # 回應訊息
-    bot_response = response.text.replace('**','').replace('*','-')
+    # 根據訊息生成回應
+    bot_response = f"你說了: {user_message}"
     
     # 建立回應 JSON
     response_data = {
