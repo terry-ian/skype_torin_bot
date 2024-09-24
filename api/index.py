@@ -52,7 +52,16 @@ chat_session = model.start_chat(
   ]
 )
 
-
+def send_typing(self, bot_id, bot_name, recipient, service, sender):
+    typing_message = {
+        'type': 'typing',
+        'from': {'id': bot_id, 'name': bot_name},
+        'recipient': recipient,
+        'serviceUrl': service,
+        'conversation': {'id': sender}
+    }
+    # 發送 typing 狀態
+    self.post_to_skype(typing_message)
 
 
 app = Flask(__name__)
