@@ -3,3 +3,4 @@ Werkzeug==2.3.7
 line-bot-sdk
 google-generativeai
 skype-chatbot
+asyncio
