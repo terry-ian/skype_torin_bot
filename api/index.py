@@ -68,22 +68,40 @@ def home():
 @app.route('/webhook', methods=['POST'])
 def handle_message():
     try:
-        data = json.loads(request.data) 
+        # 接收來自 Skype 的資料
+        data = json.loads(request.data)
+        
+        # 抽取必須的資料
         bot_id = data['recipient']['id']
         bot_name = data['recipient']['name']
         recipient = data['from']
         service = data['serviceUrl']
         sender = data['conversation']['id']
-        text_gpt = chat_session.send_message(data['text'])
-        text = text_gpt.text.replace('**','').replace('*','-')
-        text = text.replace('\n\n','\n').replace('\n\n\n','\n').replace('\n\n\n\n','\n').rstrip('\n')
+        
+        # 發送 typing 狀態給使用者
+        bot.send_typing(bot_id, bot_name, recipient, service, sender)
+        time.sleep(3)  # 模擬 typing 動作的延遲
+        
+        # 根據不同情況處理訊息
+        if data['text'].strip().lower() == "wait":
+            # 模擬回應
+            text = "Finished Typing"
+        else:
+            # 處理一般文字訊息，發送給 GPT 或其他回應系統
+            text_gpt = chat_session.send_message(data['text'])
+            text = text_gpt.text.replace('**', '').replace('*', '-')
+            text = text.replace('\n\n', '\n').replace('\n\n\n', '\n').replace('\n\n\n\n', '\n').rstrip('\n')
+        
+        # 發送回應訊息
         bot.send_message(bot_id, bot_name, recipient, service, sender, text)
         
     except Exception as e:
-      print(e)
+        print(f"Error: {e}")
+        return 'Error occurred', 500
 
-    # 回傳回應給 Azure Bot Service
-    return 'Code: 200'
+    # 回應 Azure Bot Service
+    return 'Code: 200', 200
+
 
 
 
