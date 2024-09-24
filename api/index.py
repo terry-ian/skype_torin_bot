@@ -58,7 +58,7 @@ model = genai.GenerativeModel(
   # safety_settings = Adjust safety settings
   # See https://ai.google.dev/gemini-api/docs/safety-settings
 )
-files = ["./data/combined_output.txt", mime_type="text/plain"),
+files = [upload_to_gemini("./data/combined_output.txt", mime_type="text/plain"),
         ]
 
 chat_session = model.start_chat(
