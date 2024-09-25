@@ -59,7 +59,6 @@ chat_session = model.start_chat(
   ]
 )
 
-
 app = Flask(__name__)
 
 bot = skype_chatbot.SkypeBot(app_id, app_secret)
