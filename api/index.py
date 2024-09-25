@@ -12,27 +12,28 @@ app_id = os.getenv('APP_ID')
 app_secret = os.getenv('APP_SECRET')
 genai.configure(api_key="AIzaSyD8OG39WRzCydCU2l6qOmqLJkldMbFmI9o")
 
-# Create the model
-generation_config = {
-  "temperature": 0.3,
-  "top_p": 0.95,
-  "top_k": 64,
-  "max_output_tokens": 12000,
-  "response_mime_type": "text/plain",
-}
-
-model = genai.GenerativeModel(
-  model_name="gemini-1.5-flash-8b-exp-0827",
-  generation_config=generation_config,
-  # safety_settings = Adjust safety settings
-  # See https://ai.google.dev/gemini-api/docs/safety-settings
-)
-
+#read file
 file_list = []
 
 for file in genai.list_files():
     file_name=genai.get_file(file.name)
     file_list.append(file_name)
+
+# Create the model
+generation_config = {
+  "temperature": 0.3,
+  "top_p": 0.95,
+  "top_k": 64,
+  "max_output_tokens": 1500,
+  "response_mime_type": "text/plain",
+}
+
+model = genai.GenerativeModel(
+  model_name="gemini-1.5-pro-exp-0827",
+  generation_config=generation_config,
+  # safety_settings = Adjust safety settings
+  # See https://ai.google.dev/gemini-api/docs/safety-settings
+)
 
 chat_session = model.start_chat(
   history=[
