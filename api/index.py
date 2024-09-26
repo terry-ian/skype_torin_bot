@@ -69,7 +69,7 @@ def home():
     return 'Hello, World!'
 
 # 用來接收訊息的 Webhook
-@app.route('/webhook', methods=['POST'])
+@app.route('/webhook', methods=['GET', 'POST'])
 def handle_message():
     try:
         bot = skype_chatbot.SkypeBot(app_id, app_secret)
