@@ -78,6 +78,7 @@ def handle_message():
         recipient = data['from']
         service = data['serviceUrl']
         sender = data['conversation']['id']
+        replyToId=data['replyToId']
 
         if data['text'] in ['選單','menu','清單'] :
             button1 = bot.create_button("openUrl","Horizon Wesite","https://www.horizonfitness.com/")
@@ -86,7 +87,7 @@ def handle_message():
             img1 = bot.create_card_image(url,alt="hello")
             #here in place of `hero` you can specify `thumbnail` to send thumnail card.  
             attachment1 = bot.create_card_attachment("hero","hero card test",subtitle="Menu list",text="Horizon Menu",images=[img1],buttons=[button1,button2])
-            bot.send_card(sender,"carousel", [attachment1],text="Hello Horizon")
+            bot.send_card(bot_id, bot_name, recipient, replyToId,service,sender,"carousel", [attachment1],text="Hello Horizon")
         else :
             text_gpt = chat_session.send_message(data['text'])
             text = text_gpt.text.replace('**','').replace('*','-')
