@@ -83,11 +83,11 @@ def handle_message():
         if data['text'] in ['選單','menu','清單'] :
             button1 = bot.create_button("openUrl","Horizon Wesite","https://www.horizonfitness.com/")
             button2 = bot.create_button("openUrl","Horizon Spec","https://docs.google.com/spreadsheets/d/1HbhwHKEyW_3Pnzp8nLMJtXNq0WtwqgsZ/edit?gid=549883299#gid=549883299")
-            url = 'https://cdn.horizonfitness.rocks/brand/horizon/logos/HZ-white-400.png'
+            url = 'https://horizonfitness.mx/cdn/shop/files/Horizon_Fitness_logo_1_color_white_Shopi.jpg?v=1630620395'
             img1 = bot.create_card_image(url,alt="hello")
             #here in place of `hero` you can specify `thumbnail` to send thumnail card.  
-            attachment1 = bot.create_card_attachment("hero","hero card test",subtitle="Menu list",text="Horizon Menu",images=[img1],buttons=[button1,button2])
-            bot.send_card(bot_id, bot_name, recipient, replyToId,service,sender,"carousel", [attachment1],text="Hello Horizon")
+            attachment1 = bot.create_card_attachment("hero","Horizon Card List",subtitle="Menu list",text="Horizon Menu",images=[img1],buttons=[button1,button2])
+            bot.send_card(bot_id, bot_name, recipient, replyToId,service,sender,"carousel", [attachment1],text="")
         else :
             text_gpt = chat_session.send_message(data['text'])
             text = text_gpt.text.replace('**','').replace('*','-')
