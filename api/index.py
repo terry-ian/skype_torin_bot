@@ -78,10 +78,20 @@ def handle_message():
         recipient = data['from']
         service = data['serviceUrl']
         sender = data['conversation']['id']
-        text_gpt = chat_session.send_message(data['text'])
-        text = text_gpt.text.replace('**','').replace('*','-')
-        text = text.replace('\n\n','\n').replace('\n\n\n','\n').replace('\n\n\n\n','\n').rstrip('\n')
-        bot.send_message(bot_id, bot_name, recipient, service, sender, text)
+
+        if ['選單','menu','清單'] in data['text'] :
+            button1 = bot.create_buttons("openUrl","Horizon Wesite","https://www.horizonfitness.com/")
+            button2 = bot.create_buttons("openUrl","Horizon Spec","https://docs.google.com/spreadsheets/d/1HbhwHKEyW_3Pnzp8nLMJtXNq0WtwqgsZ/edit?gid=549883299#gid=549883299")
+            url = 'https://cdn.horizonfitness.rocks/brand/horizon/logos/HZ-white-400.png'
+            img1 = bot.create_card_image(url,alt="hello")
+            #here in place of `hero` you can specify `thumbnail` to send thumnail card.  
+            attachment1 = bot.create_card_attachment("hero","hero card test",subtitle="Menu list",text="Horizon Menu",images=[img1],buttons=[button1,button2])
+            bot.send_card(sender,"carousel", [attachment1],text="Hello Horizon")
+        else :
+            text_gpt = chat_session.send_message(data['text'])
+            text = text_gpt.text.replace('**','').replace('*','-')
+            text = text.replace('\n\n','\n').replace('\n\n\n','\n').replace('\n\n\n\n','\n').rstrip('\n')
+            bot.send_message(bot_id, bot_name, recipient, service, sender, text)
         
     except Exception as e:
       print(e)
