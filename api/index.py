@@ -6,7 +6,7 @@ import re
 import time
 import google.generativeai as genai
 
-working_status = os.getenv("DEFALUT_TALKING", default = "true").lower() == "true"
+#working_status = os.getenv("DEFALUT_TALKING", default = "true").lower() == "true"
 
 app_id = os.getenv('APP_ID')
 app_secret = os.getenv('APP_SECRET')
