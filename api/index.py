@@ -78,7 +78,7 @@ def handle_message():
         recipient = data['from']
         service = data['serviceUrl']
         sender = data['conversation']['id']
-        replyToId=data['replyToId']
+        replyToId=data['id']
 
         if data['text'] in ['選單','menu','清單'] :
             button1 = bot.create_button("openUrl","Horizon Wesite","https://www.horizonfitness.com/")
