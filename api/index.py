@@ -70,7 +70,7 @@ def home():
 # 用來接收訊息的 Webhook
 @app.route('/webhook', methods=['GET', 'POST'])
 def handle_message():
-    global global_bot_id
+    global bot_id
     try:
         bot = skype_chatbot.SkypeBot(app_id, app_secret)
         data = json.loads(request.data) 
