@@ -72,6 +72,7 @@ def home():
 @app.route('/webhook', methods=['POST'])
 def handle_message():
     try:
+        bot = skype_chatbot.SkypeBot(app_id, app_secret)
         data = json.loads(request.data) 
         bot_id = data['recipient']['id']
         bot_name = data['recipient']['name']
