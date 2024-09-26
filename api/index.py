@@ -60,7 +60,6 @@ app = Flask(__name__)
 app_id = os.getenv('APP_ID')
 app_secret = os.getenv('APP_SECRET')
 bot = skype_chatbot.SkypeBot(app_id, app_secret)
-bot_id = None
 
 # domain root
 @app.route('/')
@@ -70,13 +69,9 @@ def home():
 # 用來接收訊息的 Webhook
 @app.route('/webhook', methods=['GET', 'POST'])
 def handle_message():
-    global bot_id
     try:
-        bot = skype_chatbot.SkypeBot(app_id, app_secret)
         data = json.loads(request.data) 
-        bot_id_x = data['recipient']['id']
-        if bot_id != bot_id_x:
-            bot_id = bot_id_x
+        bot_id = data['recipient']['id']
         bot_name = data['recipient']['name']
         recipient = data['from']
         service = data['serviceUrl']
