@@ -80,8 +80,8 @@ def handle_message():
         sender = data['conversation']['id']
 
         if data['text'] in ['選單','menu','清單'] :
-            button1 = bot.create_buttons("openUrl","Horizon Wesite","https://www.horizonfitness.com/")
-            button2 = bot.create_buttons("openUrl","Horizon Spec","https://docs.google.com/spreadsheets/d/1HbhwHKEyW_3Pnzp8nLMJtXNq0WtwqgsZ/edit?gid=549883299#gid=549883299")
+            button1 = bot.create_button("openUrl","Horizon Wesite","https://www.horizonfitness.com/")
+            button2 = bot.create_button("openUrl","Horizon Spec","https://docs.google.com/spreadsheets/d/1HbhwHKEyW_3Pnzp8nLMJtXNq0WtwqgsZ/edit?gid=549883299#gid=549883299")
             url = 'https://cdn.horizonfitness.rocks/brand/horizon/logos/HZ-white-400.png'
             img1 = bot.create_card_image(url,alt="hello")
             #here in place of `hero` you can specify `thumbnail` to send thumnail card.  
