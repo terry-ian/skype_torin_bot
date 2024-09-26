@@ -21,10 +21,10 @@ for file in genai.list_files():
 
 # Create the model
 generation_config = {
-  "temperature": 0.3,
+  "temperature": 0.2,
   "top_p": 0.95,
-  "top_k": 64,
-  "max_output_tokens": 1500,
+  "top_k": 32,
+  "max_output_tokens": 800,
   "response_mime_type": "text/plain",
 }
 
