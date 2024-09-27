@@ -70,12 +70,12 @@ def handle_message():
 
     payload = "grant_type=client_credentials&client_id=" + app_id + "&client_secret=" + app_secret + \
               "&scope=https%3A%2F%2Fapi.botframework.com%2F.default"
-    response = requests.post("https://login.microsoftonline.com/common/oauth2/v2.0/token?client_id=" +
+    response123 = request.post("https://login.microsoftonline.com/common/oauth2/v2.0/token?client_id=" +
                              app_id + "&client_secret=" + app_secret + "&grant_type=client_credentials&"
                              "scope=https%3A%2F%2Fgraph.microsoft.com%2F.default", data=payload,
                              headers={"Host": "login.microsoftonline.com",
                                       "Content-Type": "application/x-www-form-urlencoded"})
-    data123 = response.json()
+    data123 = response123.json()
     token = data123["access_token"]
     
     try:
