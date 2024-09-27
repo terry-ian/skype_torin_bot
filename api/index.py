@@ -67,6 +67,16 @@ def handle_message():
         },
       ]
     )
+
+    payload = "grant_type=client_credentials&client_id=" + app_id + "&client_secret=" + app_secret + \
+              "&scope=https%3A%2F%2Fapi.botframework.com%2F.default"
+    response = requests.post("https://login.microsoftonline.com/common/oauth2/v2.0/token?client_id=" +
+                             app_id + "&client_secret=" + app_secret + "&grant_type=client_credentials&"
+                             "scope=https%3A%2F%2Fgraph.microsoft.com%2F.default", data=payload,
+                             headers={"Host": "login.microsoftonline.com",
+                                      "Content-Type": "application/x-www-form-urlencoded"})
+    data = response.json()
+    token = data["access_token"]
     
     try:
         data = json.loads(request.data) 
@@ -76,7 +86,6 @@ def handle_message():
         service = data['serviceUrl']
         sender = data['conversation']['id']
         replyToId=data['id']
-        token = data["access_token"]
 
         if data['text'] in ['選單','menu','清單'] :
             button1 = bot.create_button("openUrl","Horizon Wesite","https://www.horizonfitness.com/")
