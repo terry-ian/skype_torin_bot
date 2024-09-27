@@ -10,7 +10,6 @@ app = Flask(__name__)
 
 app_id = os.getenv('APP_ID')
 app_secret = os.getenv('APP_SECRET')
-bot = skype_chatbot.SkypeBot(app_id, app_secret)
 
 # domain root
 @app.route('/')
