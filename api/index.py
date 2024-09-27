@@ -11,6 +11,7 @@ genai.configure(api_key="AIzaSyD8OG39WRzCydCU2l6qOmqLJkldMbFmI9o")
 #read file
 file_list = []
 
+
 for file in genai.list_files():
     file_name=genai.get_file(file.name)
     file_list.append(file_name)
