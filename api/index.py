@@ -71,6 +71,7 @@ def home():
 @app.route('/webhook', methods=['GET', 'POST'])
 def handle_message():
     genai.configure(api_key="AIzaSyD8OG39WRzCydCU2l6qOmqLJkldMbFmI9o")
+    bot = skype_chatbot.SkypeBot(app_id, app_secret)
     try:
         data = json.loads(request.data) 
         bot_id = data['recipient']['id']
