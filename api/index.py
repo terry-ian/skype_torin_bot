@@ -75,8 +75,8 @@ def handle_message():
                              "scope=https%3A%2F%2Fgraph.microsoft.com%2F.default", data=payload,
                              headers={"Host": "login.microsoftonline.com",
                                       "Content-Type": "application/x-www-form-urlencoded"})
-    data = response.json()
-    token = data["access_token"]
+    data123 = response.json()
+    token = data123["access_token"]
     
     try:
         data = json.loads(request.data) 
