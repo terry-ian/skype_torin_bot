@@ -6,7 +6,6 @@ import re
 import time
 import google.generativeai as genai
 
-app = Flask(__name__)
 #working_status = os.getenv("DEFALUT_TALKING", default = "true").lower() == "true"
 genai.configure(api_key="AIzaSyD8OG39WRzCydCU2l6qOmqLJkldMbFmI9o")
 #read file
@@ -15,6 +14,8 @@ file_list = []
 for file in genai.list_files():
     file_name=genai.get_file(file.name)
     file_list.append(file_name)
+
+app = Flask(__name__)
 
 # Create the model
 generation_config = {
