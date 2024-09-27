@@ -15,8 +15,6 @@ for file in genai.list_files():
     file_name=genai.get_file(file.name)
     file_list.append(file_name)
 
-app = Flask(__name__)
-
 # Create the model
 generation_config = {
   "temperature": 0.2,
@@ -57,6 +55,8 @@ chat_session = model.start_chat(
   ]
 )
 
+app = Flask(__name__)
+
 app_id = os.getenv('APP_ID')
 app_secret = os.getenv('APP_SECRET')
 bot = skype_chatbot.SkypeBot(app_id, app_secret)
@@ -65,6 +65,10 @@ bot = skype_chatbot.SkypeBot(app_id, app_secret)
 @app.route('/')
 def home():
     return 'Hello, World!'
+
+@app.before_request
+def func():
+  session.modified = True
 
 # 用來接收訊息的 Webhook
 @app.route('/webhook', methods=['GET', 'POST'])
