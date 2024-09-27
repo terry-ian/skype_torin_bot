@@ -6,6 +6,7 @@ import re
 import time
 import google.generativeai as genai
 
+app = Flask(__name__)
 #working_status = os.getenv("DEFALUT_TALKING", default = "true").lower() == "true"
 genai.configure(api_key="AIzaSyD8OG39WRzCydCU2l6qOmqLJkldMbFmI9o")
 #read file
@@ -54,8 +55,6 @@ chat_session = model.start_chat(
     },
   ]
 )
-
-app = Flask(__name__)
 
 app_id = os.getenv('APP_ID')
 app_secret = os.getenv('APP_SECRET')
