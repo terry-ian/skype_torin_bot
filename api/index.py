@@ -69,7 +69,6 @@ def handle_message():
     )
     
     try:
-        bot.get_token()
         data = json.loads(request.data) 
         bot_id = data['recipient']['id']
         bot_name = data['recipient']['name']
@@ -77,6 +76,7 @@ def handle_message():
         service = data['serviceUrl']
         sender = data['conversation']['id']
         replyToId=data['id']
+        token = data["access_token"]
 
         if data['text'] in ['選單','menu','清單'] :
             button1 = bot.create_button("openUrl","Horizon Wesite","https://www.horizonfitness.com/")
