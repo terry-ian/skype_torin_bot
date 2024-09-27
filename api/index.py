@@ -67,13 +67,10 @@ bot = skype_chatbot.SkypeBot(app_id, app_secret)
 def home():
     return 'Hello, World!'
 
-@app.before_request
-def func():
-  session.modified = True
-
 # 用來接收訊息的 Webhook
 @app.route('/webhook', methods=['GET', 'POST'])
 def handle_message():
+    genai.configure(api_key="AIzaSyD8OG39WRzCydCU2l6qOmqLJkldMbFmI9o")
     try:
         data = json.loads(request.data) 
         bot_id = data['recipient']['id']
