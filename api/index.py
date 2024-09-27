@@ -98,9 +98,5 @@ def handle_message():
     # 回傳回應給 Azure Bot Service
     return 'Code: 200'
 
-    # 回應 Azure Bot Service
-    return 'Code: 200', 200
-
-
 if __name__ == "__main__":
     app.run()
