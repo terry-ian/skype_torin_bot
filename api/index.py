@@ -49,7 +49,6 @@ chat_session = model.start_chat(
         file_list[0],
         file_list[1],
         file_list[2],
-        file_list[3],
       ],
     },
     {
@@ -70,6 +69,7 @@ def home():
 # 用來接收訊息的 Webhook
 @app.route('/webhook', methods=['GET', 'POST'])
 def handle_message():
+    bot = skype_chatbot.SkypeBot(app_id, app_secret)
     payload = "grant_type=client_credentials&client_id=" + app_id + "&client_secret=" + app_secret + \
               "&scope=https%3A%2F%2Fapi.botframework.com%2F.default"
     response123 = requests.post("https://login.microsoftonline.com/common/oauth2/v2.0/token?client_id=" +
