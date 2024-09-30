@@ -49,6 +49,7 @@ chat_session = model.start_chat(
         file_list[0],
         file_list[1],
         file_list[2],
+        file_list[3],
       ],
     },
     {
