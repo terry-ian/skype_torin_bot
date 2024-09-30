@@ -21,7 +21,7 @@ for file in genai.list_files():
 
 # Create the model
 generation_config = {
-  "temperature": 0.2,
+  "temperature": 0.1,
   "top_p": 0.95,
   "top_k": 32,
   "max_output_tokens": 800,
