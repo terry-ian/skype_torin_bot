@@ -68,8 +68,6 @@ def home():
 # 用來接收訊息的 Webhook
 @app.route('/webhook', methods=['GET', 'POST'])
 def handle_message():
-
-    bot = skype_chatbot.SkypeBot(app_id, app_secret)
     payload = "grant_type=client_credentials&client_id=" + app_id + "&client_secret=" + app_secret + \
               "&scope=https%3A%2F%2Fapi.botframework.com%2F.default"
     response123 = requests.post("https://login.microsoftonline.com/common/oauth2/v2.0/token?client_id=" +
@@ -79,6 +77,7 @@ def handle_message():
                                       "Content-Type": "application/x-www-form-urlencoded"})
     data123 = response123.json()
     token = data123["access_token"]
+    bot = skype_chatbot.SkypeBot(app_id, app_secret)
     
     try:
         data = json.loads(request.data) 
