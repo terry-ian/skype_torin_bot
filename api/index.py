@@ -79,6 +79,7 @@ def handle_message():
                                       "Content-Type": "application/x-www-form-urlencoded"})
     data123 = response123.json()
     token = data123["access_token"]
+    global token
     bot = skype_chatbot.SkypeBot(app_id, app_secret)
     
     try:
@@ -98,13 +99,13 @@ def handle_message():
             img1 = bot.create_card_image(url,alt="hello")
             #here in place of `hero` you can specify `thumbnail` to send thumnail card.  
             attachment1 = bot.create_card_attachment("hero","Horizon Card List",subtitle="Menu list",text="Horizon Menu",images=[img1],buttons=[button1,button2,button3])
-            bot.send_card(token,bot_id, bot_name, recipient, replyToId,service,sender,"carousel", [attachment1])# ,text=""
+            bot.send_card(bot_id, bot_name, recipient, replyToId,service,sender,"carousel", [attachment1],text="")# 
         else :
             #bot.send_media(bot_id, bot_name, recipient,service,sender,"carousel","https://lurvink.nl/wp-content/themes/Lurvink/img/loader.gif")
             text_gpt = chat_session.send_message(data['text'])
             text = text_gpt.text.replace('**','').replace('*','-')
             text = text.replace('\n\n','\n').replace('\n\n\n','\n').replace('\n\n\n\n','\n').rstrip('\n')
-            bot.send_message(token,bot_id, bot_name, recipient, service, sender, text)
+            bot.send_message(bot_id, bot_name, recipient, service, sender, text)
         
     except Exception as e:
       print(e)
