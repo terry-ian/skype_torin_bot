@@ -79,7 +79,6 @@ def handle_message():
                                       "Content-Type": "application/x-www-form-urlencoded"})
     data123 = response123.json()
     token = data123["access_token"]
-    global token
     bot = skype_chatbot.SkypeBot(app_id, app_secret)
     
     try:
