@@ -98,7 +98,7 @@ def handle_message():
             img1 = bot.create_card_image(url,alt="hello")
             #here in place of `hero` you can specify `thumbnail` to send thumnail card.  
             attachment1 = bot.create_card_attachment("hero","Horizon Card List",subtitle="Menu list",text="Horizon Menu",images=[img1],buttons=[button1,button2,button3])
-            bot.send_card(token,bot_id, bot_name, recipient, replyToId,service,sender,"carousel", [attachment1],text="")
+            bot.send_card(token,bot_id, bot_name, recipient, replyToId,service,sender,"carousel", [attachment1])# ,text=""
         else :
             #bot.send_media(bot_id, bot_name, recipient,service,sender,"carousel","https://lurvink.nl/wp-content/themes/Lurvink/img/loader.gif")
             text_gpt = chat_session.send_message(data['text'])
